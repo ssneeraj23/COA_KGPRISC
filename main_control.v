@@ -22,7 +22,7 @@ output reg [d-1:0] branch;
 output reg [d:0] ALUop;
 output reg ALUSrc;
 output reg reg_dest;
-output reg [d-1:0] reg_write;
+output reg reg_write;
 
 
 always @(*) begin
@@ -85,7 +85,7 @@ always @(*) begin
         6b'000110:
           begin
             branch <= 2b'11;
-            regdest <= 1b'0;
+            regdest <= 1b'1;
             reg_write <= 1b'0;
             ALUop <= 3b'011;
             ALUSrc <= 1b'1;
@@ -96,7 +96,7 @@ always @(*) begin
         6b'100011:
           begin
             branch <= 2b'00;
-            regdest <= 1b'0;
+            regdest <= 1b'1;
             reg_write <= 1b'1;
             ALUop <= 3b'100;
             ALUSrc <= 1b'1;
