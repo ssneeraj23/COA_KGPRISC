@@ -41,21 +41,18 @@ always @(*) begin
                       default: alu_control_signal <= 4'b1011;
             endcase
           end
+        3b'100:
+          begin
+              alu_control_signal <= 4'b0000;
+          end
         3b'101:
           begin
-            case (funct)
-                      6'b000001: alu_control_signal <= 4'b0000;
-                      default: alu_control_signal <= 4'b1011;
-            endcase
-          end      
-         3b'110:
+              alu_control_signal <= 4'b0001;
+          end        
+        3b'011:
           begin
-            case (funct)
-                      6'b000001: alu_control_signal <= 4'b0001;
-                      default: alu_control_signal <= 4'b1011;
-            endcase
-          end     
-        default: alu_control_signal <= 4'bb1011;
+              alu_control_signal <= 4'b1011;
+          end
           endcase
     end
 
