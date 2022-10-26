@@ -4,8 +4,8 @@ module alu(
      in1;
      in2;
      shamt;
-    control;
-    out1;
+     control;
+     out1;
      flag;
 );
 
