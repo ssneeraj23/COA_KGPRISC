@@ -1,12 +1,32 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    14:28:05 10/28/2022 
+// Design Name: 
+// Module Name:    alu 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
 
-module alu(
-     in1;
-     in2;
-     shamt;
-    control;
-    out1;
-     flag;
+module ALU(
+     in1,
+     in2,
+     shamt,
+    control,
+    out,
+     flag
 );
 
 parameter size=32;
@@ -22,7 +42,7 @@ wire [size-1:0] comp;
 wire [size-1:0] shmt_final;
 wire carrysum;
 wire ifequal;
-assign shmt_final = control[3]==0  ? {27'b0, shamt} : input2 ; //control(3)==0 then sll, srl, sra else srav, sllv
+assign shmt_final = control[3]==0  ? {27'b0, shamt} : in2 ; //control(3)==0 then sll, srl, sra else srav, sllv
 
 always @(*) begin
         flag[0] = in1 == 32'b0 ? 1'b1 : 1'b0;
@@ -31,7 +51,7 @@ always @(*) begin
             3'b000: 
                 begin
                     out = in1+in2;
-                    flag[2] = sumcarry;
+                    flag[2] = carrysum;
                 end
             3'b001:
                 begin
@@ -40,7 +60,7 @@ always @(*) begin
                 end
             3'b010:
                 begin
-                    diff dif(in1(in1), in2(in2), out(out), ifequal(ifequal));
+                    diff dif(.in1(in1), .in2(in2), .out(out), .ifequal(ifequal));
                     flag[2] = 1'b0;
                 end    
             3'b011:

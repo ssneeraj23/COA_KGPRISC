@@ -1,5 +1,25 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    15:00:20 10/28/2022 
+// Design Name: 
+// Module Name:    register_file 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
 `timescale 1ns/1ps
-module register_file(
+module Reg_file(
     input [4:0] reg1,
     input [4:0] reg2,
     input  reg_write,
@@ -8,12 +28,12 @@ module register_file(
     output [31:0] read1,
     output [31:0] read2,
     input clock,
-    input reset,
+    input reset
     );
 
     reg [31:0] register[31:0];
 
-    always @(posedge clk) begin
+    always @(posedge clock) begin
         if(reset) begin
             register[0] <= 0;
             register[1] <= 0;
@@ -74,7 +94,7 @@ module register_file(
                                 register[reg2]<=write_data;     
                             end
                         endcase
-                    
+                    end
             endcase
         end
     end

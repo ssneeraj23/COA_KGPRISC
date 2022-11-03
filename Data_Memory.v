@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    14:58:52 10/28/2022 
+// Create Date:    16:33:54 10/28/2022 
 // Design Name: 
-// Module Name:    pc 
+// Module Name:    Data_Memory 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,21 +18,9 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`timescale 1ns/1ps
-module Program_Counter(
-    input clock,
-    input reset,
-    input [31:0] pc_in,
-    output reg [31:0] pc_out);
-always @(posedge clock)
-begin
-    if(reset)
-        begin
-            pc_out<=0;
-        end
-    else 
-        begin
-            pc_out<=pc_in;
-        end
-end
-endmodule            
+module Data_Memory(
+     
+    );
+
+
+endmodule

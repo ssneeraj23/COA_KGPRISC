@@ -1,4 +1,24 @@
-'timescale 1ns/1ps
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    14:41:04 10/28/2022 
+// Design Name: 
+// Module Name:    alu_control 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns/1ps
 
 module ALU_Control_Unit(
    funct,
@@ -12,7 +32,7 @@ module ALU_Control_Unit(
 
 always @(*) begin
     case(aluop)
-        3b'000:
+        3'b000:
           begin
             case (funct)
                       6'b000001: alu_control_signal <= 4'b0000;
@@ -21,7 +41,7 @@ always @(*) begin
                       default: alu_control_signal <= 4'b1011;
             endcase
           end
-        3b'001:
+        3'b001:
           begin
             case (funct)
                       6'b000001: alu_control_signal <= 4'b0011;
@@ -29,7 +49,7 @@ always @(*) begin
                       default: alu_control_signal <= 4'b1011;
             endcase
           end
-        3b'010:
+        3'b010:
           begin
             case (funct)
                       6'b000000: alu_control_signal <= 4'b0101;
@@ -41,15 +61,15 @@ always @(*) begin
                       default: alu_control_signal <= 4'b1011;
             endcase
           end
-        3b'100:
+        3'b100:
           begin
               alu_control_signal <= 4'b0000;
           end
-        3b'101:
+        3'b101:
           begin
               alu_control_signal <= 4'b0001;
           end        
-        3b'011:
+        3'b011:
           begin
               alu_control_signal <= 4'b1011;
           end
@@ -57,5 +77,6 @@ always @(*) begin
     end
 
 endmodule   
+
 
 

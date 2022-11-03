@@ -1,9 +1,29 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    14:44:00 10/28/2022 
+// Design Name: 
+// Module Name:    main_control 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
 
 module main_control(
      opcode,
      Memread,
-     Memwrite
+     Memwrite,
      MemToReg,
      branch,
      ALUop,
@@ -27,128 +47,129 @@ output reg reg_write;
 
 always @(*) begin
     case(opcode)
-       6b'000001:
+       6'b000001:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'1;
-            ALUop <= 3b'000;
-            ALUSrc <= 1b'0;
-            Memread <= 1b'0;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b1;
+            ALUop <= 3'b000;
+            ALUSrc <= 1'b0;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'000010:
+        6'b000010:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'1;
-            ALUop <= 3b'001;
-            ALUSrc <= 1b'0;
-            Memread <= 1b'0;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b1;
+            ALUop <= 3'b001;
+            ALUSrc <= 1'b0;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'000011:
+        6'b000011:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'1;
-            ALUop <= 3b'010;
-            ALUSrc <= 1b'0;
-            Memread <= 1b'0;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b1;
+            ALUop <= 3'b010;
+            ALUSrc <= 1'b0;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'000100:
+        6'b000100:
           begin
-            branch <= 2b'01;
-            regdest <= 1b'0;
-            reg_write <= 1b'0;
-            ALUop <= 3b'011;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'0;
+            branch <= 2'b01;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b0;
+            ALUop <= 3'b011;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'000101:
+        6'b000101:
           begin
-            branch <= 2b'10;
-            regdest <= 1b'0;
-            reg_write <= 1b'0;
-            ALUop <= 3b'011;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'0;
+            branch <= 2'b10;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b0;
+            ALUop <= 3'b011;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'000110:
+        6'b000110:
           begin
-            branch <= 2b'11;
-            regdest <= 1b'1;
-            reg_write <= 1b'0;
-            ALUop <= 3b'011;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'0;
+            branch <= 2'b11;
+            reg_dest <= 1'b1;
+            reg_write <= 1'b0;
+            ALUop <= 3'b011;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'01;
+            MemToReg <= 2'b01;
           end
-        6b'100011:
+        6'b100011:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'1;
-            reg_write <= 1b'1;
-            ALUop <= 3b'100;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'1;
+            branch <= 2'b00;
+            reg_dest <= 1'b1;
+            reg_write <= 1'b1;
+            ALUop <= 3'b100;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b1;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'10;
+            MemToReg <= 2'b10;
           end
-        6b'101011:
+        6'b101011:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'0;
-            ALUop <= 3b'100;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'1;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b0;
+            ALUop <= 3'b100;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b1;
             Memwrite <= 1'b1;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'100100:
+        6'b100100:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'1;
-            ALUop <= 3b'100;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'0;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b1;
+            ALUop <= 3'b100;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end
-        6b'100101:
+        6'b100101:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'1;
-            ALUop <= 3b'101;
-            ALUSrc <= 1b'1;
-            Memread <= 1b'0;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b1;
+            ALUop <= 3'b101;
+            ALUSrc <= 1'b1;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end                 
         default:
           begin
-            branch <= 2b'00;
-            regdest <= 1b'0;
-            reg_write <= 1b'0;
-            ALUop <= 3b'000;
-            ALUSrc <= 1b'0;
-            Memread <= 1b'0;
+            branch <= 2'b00;
+            reg_dest <= 1'b0;
+            reg_write <= 1'b0;
+            ALUop <= 3'b000;
+            ALUSrc <= 1'b0;
+            Memread <= 1'b0;
             Memwrite <= 1'b0;
-            MemToReg <= 2b'00;
+            MemToReg <= 2'b00;
           end   
     endcase       
 end
 
 endmodule
+

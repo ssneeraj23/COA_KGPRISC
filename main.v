@@ -1,10 +1,35 @@
-module KGP_miniRISC(
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    15:03:16 10/28/2022 
+// Design Name: 
+// Module Name:    main 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module main(
     input clk,
     input rst,
 	output [31:0] retReg
     );
 
-
+ wire [31:0] pc_in, pc_out,pc_next , instruction , alu_out, read_1, read_2, data_output, write_data, branch_address, immediate;
+ wire[1:0] branch, MemToReg;
+ wire[2:0] aluop;
+ wire reg_dest, ALUSrc, Memread, MemWrite, reg_write;
+ wire[2:0] flag;
+ 
  main_control cmain(
    .opcode(instruction[31:26]),
    .Memread(Memread),
@@ -13,13 +38,13 @@ module KGP_miniRISC(
    .branch(branch),
    .ALUop(aluop),
    .ALUSrc(ALUSrc),
-   .reg_dest(reg_dest)
+   .reg_dest(reg_dest),
    .reg_write(reg_write)
  );   
 
  ALU alu(
     .in1(read_1),
-    .in2(read_2),
+    .in2(read_2),   //should be changed 
     .shamt(instruction[10:6]),
     .control(alu_control_signal),
     .out1(alu_out),
@@ -42,10 +67,10 @@ Program_Counter PC(
 Instruction_Memory IM(
      .pc(pc),
      .clock(clock),
-     .instruction(instruction),
+     .instruction(instruction)
 );
 
-Data_Memory DM(
+/*Data_Memory DM(
     .address(alu_out),
     .write_data(read_2),
     .clock(clock),
@@ -53,8 +78,8 @@ Data_Memory DM(
     .MemWrite(MemWrite),
     .data_output(data_output)
 );
-
-Branch_Mechanism B̨M(
+*/
+Branch_Mechanism BM(
     .pc_in(pc),
     .branch_address(branch_address),
     .branch_control_signal(branch),
@@ -87,3 +112,5 @@ mux_write_data MWD(
     .write_data_out(write_data_out),
     .data_output(data_output)
 );
+
+endmodule
