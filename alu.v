@@ -44,6 +44,10 @@ wire carrysum;
 wire ifequal;
 assign shmt_final = control[3]==0  ? {27'b0, shamt} : in2 ; //control(3)==0 then sll, srl, sra else srav, sllv
 
+//flag[0]==1 means rs=0
+//flag[1]==1 means rs<0
+//flag[2]==1 means carry==1
+
 always @(*) begin
         flag[0] = in1 == 32'b0 ? 1'b1 : 1'b0;
 		flag[1] = in1[31] == 1'b1 ? 1'b1 : 1'b0;

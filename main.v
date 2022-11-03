@@ -24,7 +24,7 @@ module main(
 	output [31:0] retReg
     );
 
- wire [31:0] pc_in, pc_out,pc_next , instruction , alu_out, read_1, read_2, data_output, write_data, branch_address, immediate;
+ wire [31:0] pc_in, pc,pc_next , pc_plus,instruction , alu_out, read_1, read_2, data_output, write_data, branch_address, immediate;
  wire[1:0] branch, MemToReg;
  wire[2:0] aluop;
  wire reg_dest, ALUSrc, Memread, MemWrite, reg_write;
@@ -58,7 +58,7 @@ ALU_Control_Unit ACU(
 );
 
 Program_Counter PC(
-    .pc_in(pc_in),
+    .pc_in(pc_next),
     .pc_out(pc),
     .clock(clock),
     .reset(reset)
@@ -89,6 +89,7 @@ Branch_Mechanism BM(
     .reset(reset),
     .pc_next(pc_next),
     .read_1(read_1),
+	 .pc_plus(pc_plus)
 
 );
 
@@ -107,7 +108,7 @@ Reg_file RF(
 
 mux_write_data MWD(
     .alu_out(alu_out),
-    .pc_next(pc_next),
+    .pc_plus(pc_plus),
     .MemToReg(MemToReg),
     .write_data_out(write_data_out),
     .data_output(data_output)

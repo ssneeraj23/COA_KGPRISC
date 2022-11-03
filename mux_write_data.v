@@ -22,7 +22,7 @@
 
 module mux_write_data(
     alu_out,
-    pc_next,
+    pc_plus,
     MemToReg,
     write_data_out,
     data_output
@@ -31,7 +31,7 @@ module mux_write_data(
 input [1:0] MemToReg;
 output reg [31:0] data_output;
 input [31:0] alu_out;
-input [31:0] pc_next;
+input [31:0] pc_plus;
 input [31:0] write_data_out;
 
 always @(*)
@@ -39,7 +39,7 @@ always @(*)
     case(MemToReg[1:0])
         2'b01: 
            begin
-              data_output <= pc_next;
+              data_output <= pc_plus;
            end  
          2'b10: 
            begin
