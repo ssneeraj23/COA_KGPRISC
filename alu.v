@@ -43,7 +43,8 @@ wire [size-1:0] shmt_final;
 wire carrysum;
 wire ifequal;
 assign shmt_final = control[3]==0  ? {27'b0, shamt} : in2 ; //control(3)==0 then sll, srl, sra else srav, sllv
-
+wire [size-1:0] diff_out;
+diff dif(.in1(in1), .in2(in2), .out(diff_out), .ifequal(ifequal));
 //flag[0]==1 means rs=0
 //flag[1]==1 means rs<0
 //flag[2]==1 means carry==1
@@ -64,7 +65,7 @@ always @(*) begin
                 end
             3'b010:
                 begin
-                    diff dif(.in1(in1), .in2(in2), .out(out), .ifequal(ifequal));
+                    out=diff_out;
                     flag[2] = 1'b0;
                 end    
             3'b011:

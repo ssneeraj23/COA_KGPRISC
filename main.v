@@ -24,11 +24,19 @@ module main(
 	output [31:0] retReg
     );
 
- wire [31:0] pc_in, pc,pc_next , pc_plus,instruction , alu_out, read_1, read_2, data_output, write_data, branch_address, immediate;
+ wire [31:0] pc_in, pc,pc_next , pc_plus,instruction , alu_out, read_1, read_2, data_output, write_data, branch_address, immediate,alu_input2;
  wire[1:0] branch, MemToReg;
  wire[2:0] aluop;
  wire reg_dest, ALUSrc, Memread, MemWrite, reg_write;
  wire[2:0] flag;
+ 
+ assign immediate = { {16{instruction[15]}}, instruction[15:0] };
+
+
+ assign branch_address= { {16{instruction[20]}}, instruction[20:5]};
+
+  
+ assign alu_input2 = ALUSrc ? read_2 : immediate;
  
  main_control cmain(
    .opcode(instruction[31:26]),
@@ -44,11 +52,11 @@ module main(
 
  ALU alu(
     .in1(read_1),
-    .in2(read_2),   //should be changed 
+    .in2(alu_input2),   //should be changed 
     .shamt(instruction[10:6]),
     .control(alu_control_signal),
-    .out1(alu_out),
-    .flag(flags)
+    .out(alu_out),
+    .flag(flag)
  );
 
 ALU_Control_Unit ACU(
@@ -70,15 +78,15 @@ Instruction_Memory IM(
      .instruction(instruction)
 );
 
-/*Data_Memory DM(
-    .address(alu_out),
-    .write_data(read_2),
-    .clock(clock),
-    .Memread(Memread),
-    .MemWrite(MemWrite),
-    .data_output(data_output)
+data_mem DM(
+    .addra(alu_out),
+    .dina(read_2),
+    .clka(clock),
+    .ena(Memread),
+    .wea(MemWrite),
+    .douta(data_output)
 );
-*/
+
 Branch_Mechanism BM(
     .pc_in(pc),
     .branch_address(branch_address),
@@ -101,8 +109,8 @@ Reg_file RF(
      .reg_dest(reg_dest),
      .clock(clock),
      .reset(reset),
-     .read_1(read_1),
-     .read_2(read_2)
+     .read1(read_1),
+     .read2(read_2)
      
 );
 
