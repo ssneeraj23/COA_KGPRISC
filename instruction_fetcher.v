@@ -23,9 +23,9 @@ module Instruction_Memory(
 	  input [31:0] pc,
 	  output [31:0] instruction
     );
-instructionss edhi_padithe_adhi_petttukovachu (
+brom your_instance_name (
   .clka(clock), // input clka
-  .addra(pc), // input [31 : 0] addra
+  .addra(pc), // input [11 : 0] addra
   .douta(instruction) // output [31 : 0] douta
 );
 

@@ -47,26 +47,26 @@ module data_memory(
 
 input clka;
 input ena;
-input [3 : 0] wea;
-input [31 : 0] addra;
+input [0 : 0] wea;
+input [11 : 0] addra;
 input [31 : 0] dina;
 output [31 : 0] douta;
 
 // synthesis translate_off
 
   BLK_MEM_GEN_V7_3 #(
-    .C_ADDRA_WIDTH(32),
-    .C_ADDRB_WIDTH(32),
+    .C_ADDRA_WIDTH(12),
+    .C_ADDRB_WIDTH(12),
     .C_ALGORITHM(1),
     .C_AXI_ID_WIDTH(4),
     .C_AXI_SLAVE_TYPE(0),
     .C_AXI_TYPE(1),
-    .C_BYTE_SIZE(8),
+    .C_BYTE_SIZE(9),
     .C_COMMON_CLK(0),
     .C_DEFAULT_DATA("0"),
     .C_DISABLE_WARN_BHV_COLL(0),
     .C_DISABLE_WARN_BHV_RANGE(0),
-    .C_ENABLE_32BIT_ADDRESS(1),
+    .C_ENABLE_32BIT_ADDRESS(0),
     .C_FAMILY("artix7"),
     .C_HAS_AXI_ID(0),
     .C_HAS_ENA(1),
@@ -102,13 +102,13 @@ output [31 : 0] douta;
     .C_RSTRAM_B(0),
     .C_SIM_COLLISION_CHECK("ALL"),
     .C_USE_BRAM_BLOCK(0),
-    .C_USE_BYTE_WEA(1),
-    .C_USE_BYTE_WEB(1),
+    .C_USE_BYTE_WEA(0),
+    .C_USE_BYTE_WEB(0),
     .C_USE_DEFAULT_DATA(0),
     .C_USE_ECC(0),
     .C_USE_SOFTECC(0),
-    .C_WEA_WIDTH(4),
-    .C_WEB_WIDTH(4),
+    .C_WEA_WIDTH(1),
+    .C_WEB_WIDTH(1),
     .C_WRITE_DEPTH_A(4096),
     .C_WRITE_DEPTH_B(4096),
     .C_WRITE_MODE_A("WRITE_FIRST"),

@@ -23,16 +23,17 @@ module Program_Counter(
     input clock,
     input reset,
     input [31:0] pc_in,
-    output reg [31:0] pc_out);
+    output reg [31:0] pc_out
+	 );
 always @(posedge clock)
 begin
-    if(reset)
+    if(reset==1'b0)
         begin
-            pc_out<=0;
+		   pc_out =pc_in;
         end
     else 
         begin
-            pc_out<=pc_in;
+            pc_out =0;
         end
 end
 endmodule            

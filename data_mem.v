@@ -23,14 +23,15 @@ module data_mem( clka,ena,wea,addra,dina,douta
 input clka;
 input wea;
 input ena;
-input [31:0] addra,dina,douta;
-wire [3:0] wea_three={3'b000,wea};
+input [31:0] addra,dina;
+output [31:0] douta;
 
-data_memory your_instance_name (
+
+data_memory bram (
   .clka(clka), // input clka
   .ena(ena), // input ena
-  .wea(wea_three), // input [3 : 0] wea
-  .addra(addra), // input [31 : 0] addra
+  .wea(wea), // input [0 : 0] wea
+  .addra(addra[11:0]), // input [11 : 0] addra
   .dina(dina), // input [31 : 0] dina
   .douta(douta) // output [31 : 0] douta
 );

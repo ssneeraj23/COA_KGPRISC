@@ -35,7 +35,7 @@ module alu_test_bench;
 	wire [2:0] flag;
 
 	// Instantiate the Unit Under Test (UUT)
-	alu uut (
+	ALU uut (
 		.in1(in1), 
 		.in2(in2), 
 		.shamt(shamt), 
@@ -56,9 +56,9 @@ module alu_test_bench;
 		#100;
         
 		// Add stimulus here
-		in1 = 32'd105;
-		in2 = 32'd106;
-		control = 4'b0001;
+		in1 = 32'd0;
+		in2 = 32'd5;
+		control = 4'b0000;
 		#10;
 		// Add stimulus here
       in1 = 32'd105;

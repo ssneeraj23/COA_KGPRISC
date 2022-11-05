@@ -40,7 +40,7 @@ output reg [2:0] flag;
 wire [size-1:0] sum;
 wire [size-1:0] comp;
 wire [size-1:0] shmt_final;
-wire carrysum;
+wire carrysum = 0;
 wire ifequal;
 assign shmt_final = control[3]==0  ? {27'b0, shamt} : in2 ; //control(3)==0 then sll, srl, sra else srav, sllv
 wire [size-1:0] diff_out;
